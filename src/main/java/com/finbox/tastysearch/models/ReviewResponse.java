@@ -25,4 +25,12 @@ public class ReviewResponse {
     public void setTopReviews(List<Review> topReviews) {
         this.topReviews = topReviews;
     }
+
+    @Override
+    public String toString() {
+        return "ReviewResponse{" +
+                "topReviews=" + topReviews +
+                ", responseStatus=" + responseStatus +
+                '}';
+    }
 }

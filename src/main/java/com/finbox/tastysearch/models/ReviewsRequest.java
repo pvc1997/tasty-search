@@ -15,4 +15,11 @@ public class ReviewsRequest {
     public void setTokens(List<String> tokens) {
         this.tokens = tokens;
     }
+
+    @Override
+    public String toString() {
+        return "ReviewsRequest{" +
+                "tokens=" + tokens +
+                '}';
+    }
 }

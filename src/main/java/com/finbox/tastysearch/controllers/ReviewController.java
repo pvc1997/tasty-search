@@ -4,10 +4,8 @@ import com.finbox.tastysearch.models.*;
 import com.finbox.tastysearch.services.FileParser;
 import com.finbox.tastysearch.services.TopReviewsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -20,9 +18,13 @@ public class ReviewController {
     @Autowired
     private FileParser fileParser;
 
-    @PostMapping(path = "/getReviews", consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/getReviews", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @PostMapping(path = "/getReviews", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ReviewResponse getTopReviews(@RequestBody ReviewsRequest reviewsRequest) {
+
+        System.out.println(reviewsRequest.toString());
         ReviewResponse reviewResponse = new ReviewResponse();
+
         if(reviewsRequest != null && reviewsRequest.getTokens() != null){
             try {
                 reviewResponse.setTopReviews(topReviewsService.getTopReviews(reviewsRequest.getTokens()));
