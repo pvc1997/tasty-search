@@ -1,7 +1,10 @@
 package com.finbox.tastysearch.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReviewsRequest {
     private List<String> tokens;
 

@@ -1,9 +1,6 @@
 package com.finbox.tastysearch.controllers;
 
-import com.finbox.tastysearch.models.FileParserResponse;
-import com.finbox.tastysearch.models.InitResponse;
-import com.finbox.tastysearch.models.ReviewResponse;
-import com.finbox.tastysearch.models.ReviewsRequest;
+import com.finbox.tastysearch.models.*;
 import com.finbox.tastysearch.services.FileParser;
 import com.finbox.tastysearch.services.TopReviewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +26,18 @@ public class ReviewController {
         if(reviewsRequest != null && reviewsRequest.getTokens() != null){
             try {
                 reviewResponse.setTopReviews(topReviewsService.getTopReviews(reviewsRequest.getTokens()));
+                if(reviewResponse.getTopReviews() != null && reviewResponse.getTopReviews().size()>0){
+                    reviewResponse.setResponseStatus(ReviewStatus.SUCCESSFUL);
+                }else{
+                    reviewResponse.setTopReviews(null);
+                    reviewResponse.setResponseStatus(ReviewStatus.NO_REVIEWS_FOUND);
+                }
             } catch (IOException e) {
+                reviewResponse.setResponseStatus(ReviewStatus.EXCEPTION_OCCURED);
                 reviewResponse.setTopReviews(null);
             }
         }
+
         return reviewResponse;
     }
 
