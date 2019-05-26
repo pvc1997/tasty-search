@@ -4,7 +4,7 @@ Steps for the execution of the project :-
 
   2. This project is using Java with Spring Boot, you can run it on either IntelliJ IDEA or Eclipse STS as Spring Boot comes with an Embedded Tomcat server. Else, you can also use Eclipse IDE and deploy the JAR on a Tomcat Server.
 
-  3. After you successfully run the project on a Tomcat Server, you can access the below API endpoints:-
+  3. After you successfully run the project on a Tomcat Server, you can access the below API endpoints using POSTMAN:-
       a. http://localhost:8080/init :- This endpoint takes in an HTTP GET request and in the output, mentions the status of the request.
       This API basically initializes the inverted index.
 
